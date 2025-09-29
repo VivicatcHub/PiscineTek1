@@ -22,7 +22,8 @@ else
 endif
 
 ## FILES ##
-SRCS	=	$(wildcard $(DAY)/*.c)
+SRCS	=	$(shell find . -type f -name '*.c' ! -name '*_tester.c')	\
+			$(shell [ -d "$(DAY)" ] && find $(DAY) -type f -name '*_tester.c')
 
 ## TRANSFORMATIONS ##
 OBJS	=	$(SRCS:%.c=%.o)

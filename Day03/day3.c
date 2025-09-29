@@ -57,7 +57,7 @@ int my_print_digits(void)
 /// @param min The minimum value (inclusive)
 /// @param max The maximum value (inclusive)
 /// @return ERROR if the integer is out of range, NOERROR otherwise
-int assert_int_range(int integer, int min, int max)
+int assert_int_range(long long integer, int min, int max)
 {
     // Main code
     if (integer < min || integer > max)
@@ -68,10 +68,10 @@ int assert_int_range(int integer, int min, int max)
 /// @brief  Check if an integer is within the range of a standard 32-bit signed integer
 /// @param integer The integer to check
 /// @return ERROR if the integer is out of range, NOERROR otherwise
-int assert_int(int integer)
+int assert_int(long long integer)
 {
     // Main code
-    if (assert_int_range(integer, INT_MIN, INT_MAX))
+    if (assert_int_range(integer, INT_MIN, INT_MAX) == ERROR)
         return ERROR;
     return NOERROR;
 }

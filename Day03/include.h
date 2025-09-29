@@ -1,5 +1,5 @@
-#ifndef INCLUDE_H
-#define INCLUDE_H
+#ifndef INCLUDE_DAY04
+#define INCLUDE_DAY04
 
 #include <unistd.h>
 #include <stdio.h>
@@ -20,8 +20,8 @@ int my_print_digits(void);
 
 /* --- Task 04 --- */
 
-int assert_int_range(int integer, int min, int max);
-int assert_int(int integer);
+int assert_int_range(long long integer, int min, int max);
+int assert_int(long long integer);
 int my_isneg(int n);
 
 /* --- Task 05 --- */
@@ -30,6 +30,7 @@ int my_print_comb(void);
 
 /* --- Task 06 --- */
 
+int char_to_int(char c);
 int my_print_comb2(void);
 
 /* --- Task 07 --- */
@@ -48,4 +49,4 @@ int my_print_combn(int n);
 #define NOERROR 0
 #define ERROR -1
 
-#endif /* INCLUDE_H */
+#endif /* INCLUDE_DAY04 */
