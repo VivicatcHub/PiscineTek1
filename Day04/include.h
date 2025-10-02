@@ -30,5 +30,6 @@ int my_getnbr(char const *str);
 /* --- Task 06 --- */
 
 void my_sort_int_array(int *array, int size);
+void my_quick_sort_int_array(int *array, int size);
 
 #endif /* INCLUDE_DAY05 */

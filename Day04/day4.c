@@ -131,3 +131,41 @@ void my_sort_int_array(int *array, int size)
         size = new_n;
     }
 }
+
+/// Private function for my_quick_sort_int_array
+int part(int *array, int first, int last, int pivot)
+{
+    my_swap(&array[pivot], &array[last]);
+    int j = first;
+    for (int i = first; i < last; i++)
+    {
+        if (array[i] <= array[last])
+        {
+            my_swap(&array[i], &array[j]);
+            j++;
+        }
+    }
+    my_swap(&array[last], &array[j]);
+    return j;
+}
+
+/// Private function for my_quick_sort_int_array
+void quick_sort(int *array, int first, int last)
+{
+    if (first < last)
+    {
+        int pivot = (last + 1) / 2;
+        pivot = part(array, first, last, pivot);
+        quick_sort(array, first, pivot - 1);
+        quick_sort(array, pivot + 1, last);
+    }
+}
+
+/// @brief Sort an array of integers in ascending order using quicksort
+/// @param array The array to sort
+/// @param size The size of the array
+/// @return void
+void my_quick_sort_int_array(int *array, int size)
+{
+    quick_sort(array, 0, size - 1);
+}

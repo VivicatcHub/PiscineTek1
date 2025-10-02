@@ -79,14 +79,14 @@ clean:
 
 ### fclean
 fclean: clean
-	@$(RM) $(NAME)	\
+	@$(RM) $(shell find . -type f -name '*.o')	\
 	&& $(call REMOVE,REMOVE,$(NAME))
 
 ### re
 re:	fclean all
 
 ### test
-test:	all
+test:	re
 	@./$(NAME)
 
 github:

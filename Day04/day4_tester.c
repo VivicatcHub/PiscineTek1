@@ -71,4 +71,18 @@ int main(void)
     for (int i = 0; i < size; i++)
         printf("%d ", arr[i]);
     printf("\n");
+
+    // my_quick_sort_int_array
+    printf("\nmy_quick_sort_int_array:\n");
+    int array[] = {5, 3, 8, 1, 2, 7};
+    int size_arr = sizeof(array) / sizeof(array[0]);
+    printf("Original array: ");
+    for (int i = 0; i < size_arr; i++)
+        printf("%d ", array[i]);
+    printf("\n");
+    my_quick_sort_int_array(array, size_arr);
+    printf("Sorted array:   ");
+    for (int i = 0; i < size_arr; i++)
+        printf("%d ", array[i]);
+    printf("\n");
 }
