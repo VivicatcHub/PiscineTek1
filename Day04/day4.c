@@ -43,8 +43,7 @@ int my_strlen(char const *str)
         return 0;
     int size = 0;
     for (; str[size] != '\0'; size++)
-    {
-    }
+        ;
     return size;
 }
 

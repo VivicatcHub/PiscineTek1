@@ -80,6 +80,7 @@ clean:
 ### fclean
 fclean: clean
 	@$(RM) $(shell find . -type f -name '*.o')	\
+	@$(RM) $(NAME)	\
 	&& $(call REMOVE,REMOVE,$(NAME))
 
 ### re
