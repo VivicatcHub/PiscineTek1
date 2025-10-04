@@ -227,7 +227,7 @@ int count_valid_queens_placements(int n)
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++)
         {
-            int **array = create_empty_array_int_int(n);
+            int **array = create_empty_array_2D_int(n);
             int nb_queen = 0;
             count += can_place_n_queens(i, j, n, array, nb_queen);
             free_array_2D_int(array, n);

@@ -47,6 +47,10 @@ int main(void)
     my_putchar('\n');
     my_put_nbr(0);
     my_putchar('\n');
+    my_put_nbr(7);
+    my_putchar('\n');
+    my_put_nbr(69);
+    my_putchar('\n');
     my_put_nbr(123456);
     my_putchar('\n');
     my_put_nbr(INT_MAX);
