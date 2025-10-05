@@ -92,4 +92,27 @@ void star(unsigned int size);
 /* --- Defines --- */
 #define UINT_MAX ((unsigned int)4294967295)
 
+/* --------------------------------- **
+** ------------- Rush1 ------------- **
+** --------------------------------- */
+
+int my_puterror(char const *str);
+void rush_generic(int x, int y, struct characters chara);
+void rush11(int x, int y);
+void rush12(int x, int y);
+void rush13(int x, int y);
+void rush14(int x, int y);
+void rush15(int x, int y);
+/* --- Structs --- */
+struct characters
+{
+    char coin1;
+    char coin2;
+    char coin3;
+    char coin4;
+    char horizontal;
+    char vertical;
+    char special;
+};
+
 #endif /* INCLUDE */
