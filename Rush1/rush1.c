@@ -16,13 +16,13 @@ int my_puterror(char const *str)
 }
 
 /// Private function for rush functions
-void display_error()
+void _display_error()
 {
     my_puterror("Invalid size\n");
 }
 
 /// Private function for rush functions
-int is_coin(int i, int j, int x, int y)
+int _is_coin(int i, int j, int x, int y)
 {
     if (i == 0 && j == 0)
         return TRUE;
@@ -36,7 +36,7 @@ int is_coin(int i, int j, int x, int y)
 }
 
 /// Private function for rush functions
-int is_side(int index, int max)
+int _is_side(int index, int max)
 {
     if (index == 0)
         return TRUE;
@@ -46,19 +46,19 @@ int is_side(int index, int max)
 }
 
 /// Private function for rush functions
-int is_horizontal(int j, int y)
+int _is_horizontal(int j, int y)
 {
-    return is_side(j, y);
+    return _is_side(j, y);
 }
 
 /// Private function for rush functions
-int is_vertical(int i, int x)
+int _is_vertical(int i, int x)
 {
-    return is_side(i, x);
+    return _is_side(i, x);
 }
 
 /// Private function for rush functions
-void display_coin(int i, int j, int x, int y, struct characters chara)
+void _display_coin(int i, int j, int x, int y, struct characters chara)
 {
     if (i == 0 && j == 0)
         my_putchar(chara.coin1);
@@ -71,7 +71,7 @@ void display_coin(int i, int j, int x, int y, struct characters chara)
 }
 
 /// Private function for rush functions
-int assert_struct_characters(struct characters *chara)
+int _assert_struct_characters(struct characters *chara)
 {
     if (chara == NULL)
         return ERROR;
@@ -83,7 +83,7 @@ int assert_struct_characters(struct characters *chara)
 }
 
 /// Private function for rush functions
-void rush_special(int x, int y, struct characters chara)
+void _rush_special(int x, int y, struct characters chara)
 {
     for (int j = 0; j < y; j++)
     {
@@ -94,17 +94,17 @@ void rush_special(int x, int y, struct characters chara)
 }
 
 /// Private function for rush functions
-void rush_normal(int x, int y, struct characters chara)
+void _rush_normal(int x, int y, struct characters chara)
 {
     for (int j = 0; j < y; j++)
     {
         for (int i = 0; i < x; i++)
         {
-            if (is_coin(i, j, x, y))
-                display_coin(i, j, x, y, chara);
-            else if (is_horizontal(j, y))
+            if (_is_coin(i, j, x, y))
+                _display_coin(i, j, x, y, chara);
+            else if (_is_horizontal(j, y))
                 my_putchar(chara.horizontal);
-            else if (is_vertical(i, x))
+            else if (_is_vertical(i, x))
                 my_putchar(chara.vertical);
             else
                 my_putchar(' ');
@@ -121,15 +121,15 @@ void rush_generic(int x, int y, struct characters chara)
 {
     // Assert inputs
     if (assert_int_range(x, 1, INT_MAX) == ERROR || assert_int_range(y, 1, INT_MAX) == ERROR)
-        return display_error();
-    if (assert_struct_characters(&chara) == ERROR)
-        return display_error();
+        return _display_error();
+    if (_assert_struct_characters(&chara) == ERROR)
+        return _display_error();
 
     // Main code
     if (chara.special != NULL && (x == 1 || y == 1))
-        rush_special(x, y, chara);
+        _rush_special(x, y, chara);
     else
-        rush_normal(x, y, chara);
+        _rush_normal(x, y, chara);
 }
 
 /// @brief Rush pattern 1
@@ -139,7 +139,7 @@ void rush11(int x, int y)
 {
     // Assert inputs
     if (assert_int_range(x, 1, INT_MAX) == ERROR || assert_int_range(y, 1, INT_MAX) == ERROR)
-        return display_error();
+        return _display_error();
 
     // Main code
     struct characters chara = {'o', 'o', 'o', 'o', '-', '|'};
@@ -154,7 +154,7 @@ void rush12(int x, int y)
 {
     // Assert inputs
     if (assert_int_range(x, 1, INT_MAX) == ERROR || assert_int_range(y, 1, INT_MAX) == ERROR)
-        return display_error();
+        return _display_error();
 
     // Main code
     struct characters chara = {'/', '\\', '\\', '/', '*', '*', '*'};
@@ -172,7 +172,7 @@ void rush13(int x, int y)
 {
     // Assert inputs
     if (assert_int_range(x, 1, INT_MAX) == ERROR || assert_int_range(y, 1, INT_MAX) == ERROR)
-        return display_error();
+        return _display_error();
 
     // Main code
     struct characters chara = {'A', 'A', 'C', 'C', 'B', 'B', 'B'};
@@ -187,7 +187,7 @@ void rush14(int x, int y)
 {
     // Assert inputs
     if (assert_int_range(x, 1, INT_MAX) == ERROR || assert_int_range(y, 1, INT_MAX) == ERROR)
-        return display_error();
+        return _display_error();
 
     // Main code
     struct characters chara = {'A', 'C', 'A', 'C', 'B', 'B', 'B'};
@@ -202,7 +202,7 @@ void rush15(int x, int y)
 {
     // Assert inputs
     if (assert_int_range(x, 1, INT_MAX) == ERROR || assert_int_range(y, 1, INT_MAX) == ERROR)
-        return display_error();
+        return _display_error();
 
     // Main code
     struct characters chara = {'A', 'C', 'C', 'A', 'B', 'B', 'B'};

@@ -91,7 +91,7 @@ int is_char_number(char c)
 }
 
 /// Private function for my_getnbr
-int is_char_to_stop(char c)
+int _is_char_to_stop(char c)
 {
     return !(is_char_number(c) || c == '-' || c == '+');
 }
@@ -119,7 +119,7 @@ int my_getnbr(char const *str)
                 return 0;
             result = result * 10 + char_to_int(c);
         }
-        if (is_char_to_stop(c))
+        if (_is_char_to_stop(c))
             break;
     }
     if (assert_int(result * sign) == ERROR)
@@ -156,7 +156,7 @@ void my_sort_int_array(int *array, int size)
 }
 
 /// Private function for my_quick_sort_int_array
-int part(int *array, int first, int last, int pivot)
+int _part(int *array, int first, int last, int pivot)
 {
     my_swap(&array[pivot], &array[last]);
     int j = first;
@@ -173,14 +173,14 @@ int part(int *array, int first, int last, int pivot)
 }
 
 /// Private function for my_quick_sort_int_array
-void quick_sort(int *array, int first, int last)
+void _quick_sort(int *array, int first, int last)
 {
     if (first < last)
     {
         int pivot = (last + 1) / 2;
-        pivot = part(array, first, last, pivot);
-        quick_sort(array, first, pivot - 1);
-        quick_sort(array, pivot + 1, last);
+        pivot = _part(array, first, last, pivot);
+        _quick_sort(array, first, pivot - 1);
+        _quick_sort(array, pivot + 1, last);
     }
 }
 
@@ -197,5 +197,5 @@ void my_quick_sort_int_array(int *array, int size)
         return;
 
     // Main code
-    quick_sort(array, 0, size - 1);
+    _quick_sort(array, 0, size - 1);
 }

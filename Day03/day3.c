@@ -139,7 +139,7 @@ int char_to_int(char c)
 }
 
 // Private function for my_print_comb2
-int has_to_be_displayed(char a, char b, char c, char d)
+int _has_to_be_displayed(char a, char b, char c, char d)
 {
     int first_number = char_to_int(a) * 10 + char_to_int(b);
     int second_number = char_to_int(c) * 10 + char_to_int(d);
@@ -156,7 +156,7 @@ int my_print_comb2(void)
         for (char b = '0'; b <= '9'; b++)
             for (char c = '0'; c <= '9'; c++)
                 for (char d = '0'; d <= '9'; d++)
-                    if (has_to_be_displayed(a, b, c, d))
+                    if (_has_to_be_displayed(a, b, c, d))
                     {
                         my_putchar(a);
                         my_putchar(b);
@@ -239,7 +239,7 @@ int pow(int integer, int power)
 }
 
 /// Private function for my_print_combn
-int get_max_for_n(int n)
+int _get_max_for_n(int n)
 {
     int result = 0;
 
@@ -249,7 +249,7 @@ int get_max_for_n(int n)
 }
 
 /// Private function for my_print_combn
-void my_print_combn_recursive(int index, int current, int max, int list)
+void _my_print_combn_recursive(int index, int current, int max, int list)
 {
     if (index == 0)
     {
@@ -260,7 +260,7 @@ void my_print_combn_recursive(int index, int current, int max, int list)
             my_put_nbr(value);
             temp_list %= pow(10, max - i);
         }
-        if (list != get_max_for_n(max))
+        if (list != _get_max_for_n(max))
         {
             my_putchar(',');
             my_putchar(' ');
@@ -270,7 +270,7 @@ void my_print_combn_recursive(int index, int current, int max, int list)
     for (int i = current + 1; i < 11 - index; i++)
     {
         int copy_list = list + i * (pow(10, index - 1));
-        my_print_combn_recursive(index - 1, i, max, copy_list);
+        _my_print_combn_recursive(index - 1, i, max, copy_list);
     }
 }
 
@@ -287,7 +287,7 @@ int my_print_combn(int n)
     for (int i = 0; i < 11 - n; i++)
     {
         int list = i * pow(10, n - 1);
-        my_print_combn_recursive(n - 1, i, n, list);
+        _my_print_combn_recursive(n - 1, i, n, list);
     }
     return NOERROR;
 }

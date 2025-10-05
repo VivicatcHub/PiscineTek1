@@ -204,7 +204,7 @@ int **create_copy_array_2D_int(int **base, int size)
 }
 
 /// Private function for count_valid_queens_placements
-int add_queen(int a, int b, int **array, int size)
+int _add_queen(int a, int b, int **array, int size)
 {
     array[a][b] = 2;
     for (int i = 0; i < size; i++)
@@ -231,10 +231,10 @@ void free_array_2D_int(int **array, int size)
 }
 
 /// Private function for count_valid_queens_placements
-int can_place_n_queens(int a, int b, int size, int **base, int nb_queen)
+int _can_place_n_queens(int a, int b, int size, int **base, int nb_queen)
 {
     int **array = create_copy_array_2D_int(base, size);
-    nb_queen += add_queen(a, b, array, size);
+    nb_queen += _add_queen(a, b, array, size);
     int count = 0;
     if (nb_queen == size)
     {
@@ -244,7 +244,7 @@ int can_place_n_queens(int a, int b, int size, int **base, int nb_queen)
     for (int i = 0; i < size; i++)
         for (int j = 0; j < size; j++)
             if (array[i][j] == 0)
-                count += can_place_n_queens(i, j, size, array, nb_queen);
+                count += _can_place_n_queens(i, j, size, array, nb_queen);
     free_array_2D_int(array, size);
     return count;
 }
@@ -265,7 +265,7 @@ int count_valid_queens_placements(int n)
         {
             int **array = create_empty_array_2D_int(n);
             int nb_queen = 0;
-            count += can_place_n_queens(i, j, n, array, nb_queen);
+            count += _can_place_n_queens(i, j, n, array, nb_queen);
             free_array_2D_int(array, n);
         }
     return count / my_compute_factorial_rec(n);

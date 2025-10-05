@@ -12,21 +12,21 @@ int max(int a, int b)
 }
 
 /// Private function for star
-int get_bar_size(int size)
+int _get_bar_size(int size)
 {
     return size * 2 + 1;
 }
 
 /// Private function for star
-int get_middle_size(int size)
+int _get_middle_size(int size)
 {
-    return max(get_bar_size(size - 2), 1);
+    return max(_get_bar_size(size - 2), 1);
 }
 
 /// Private function for star
-void display_spine(unsigned int size, int index)
+void _display_spine(unsigned int size, int index)
 {
-    int nb = get_bar_size(size) + (size - index - 1) - (size != 1);
+    int nb = _get_bar_size(size) + (size - index - 1) - (size != 1);
     for (int j = 0; j < nb; j++)
         my_putchar(' ');
     my_putchar('*');
@@ -40,26 +40,26 @@ void display_spine(unsigned int size, int index)
 }
 
 /// Private function for star
-void display_head(unsigned int size)
+void _display_head(unsigned int size)
 {
     for (int i = 0; i < (int)size; i++)
-        display_spine(size, i);
+        _display_spine(size, i);
 }
 
 /// Private function for star
-void display_down(unsigned int size)
+void _display_down(unsigned int size)
 {
     for (int i = size - 1; i >= 0; i--)
-        display_spine(size, i);
+        _display_spine(size, i);
 }
 
 /// Private function for star
-void display_bar(unsigned int size)
+void _display_bar(unsigned int size)
 {
-    int nb = get_bar_size(size);
+    int nb = _get_bar_size(size);
     for (int i = 0; i < nb; i++)
         my_putchar('*');
-    for (int i = 0; i < get_middle_size(size); i++)
+    for (int i = 0; i < _get_middle_size(size); i++)
         my_putchar(' ');
     for (int i = 0; i < nb; i++)
         my_putchar('*');
@@ -67,12 +67,12 @@ void display_bar(unsigned int size)
 }
 
 /// Private function for star
-int display_side_line(unsigned int size, int count)
+int _display_side_line(unsigned int size, int count)
 {
     for (int j = 0; j < count; j++)
         my_putchar(' ');
     my_putchar('*');
-    for (int j = 0; j < get_bar_size(size) * 2 - (count * 2) - 2 + get_middle_size(size); j++)
+    for (int j = 0; j < _get_bar_size(size) * 2 - (count * 2) - 2 + _get_middle_size(size); j++)
         my_putchar(' ');
     my_putchar('*');
     my_putchar('\n');
@@ -80,13 +80,13 @@ int display_side_line(unsigned int size, int count)
 }
 
 /// Private function for star
-void display_side(unsigned int size)
+void _display_side(unsigned int size)
 {
     int count = 1;
     for (int i = 1; i < (int)size; i++)
-        count += display_side_line(size, count);
+        count += _display_side_line(size, count);
     for (int i = 0; i < (int)size; i++)
-        count -= display_side_line(size, count);
+        count -= _display_side_line(size, count);
 }
 
 /// @brief  Check if an integer is within the range of a standard 32-bit unsigned integer
@@ -109,9 +109,9 @@ void star(unsigned int size)
         return;
 
     // Main code
-    display_head(size);
-    display_bar(size);
-    display_side(size);
-    display_bar(size);
-    display_down(size);
+    _display_head(size);
+    _display_bar(size);
+    _display_side(size);
+    _display_bar(size);
+    _display_down(size);
 }
