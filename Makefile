@@ -29,7 +29,7 @@ SRCS	=	$(shell find . -type f -name '*.c' ! -name '*_tester.c')	\
 OBJS	=	$(SRCS:%.c=%.o)
 
 ## FLAGS ##
-CFLAGS	=	-I./$(DAY)/
+CFLAGS	=	-I./Include/
 CFLAGS	+=	-Wall
 CFLAGS	+=	-Wextra
 CFLAGS	+=	-Wpedantic
