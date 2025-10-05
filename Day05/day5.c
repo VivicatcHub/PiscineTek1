@@ -8,7 +8,7 @@
 int my_compute_factorial_it(int nb)
 {
     // Assert inputs
-    if (assert_int(nb))
+    if (assert_int(nb) == ERROR)
         return ERROR;
 
     // Main code
@@ -28,7 +28,7 @@ int my_compute_factorial_it(int nb)
 int my_compute_factorial_rec(int nb)
 {
     // Assert inputs
-    if (assert_int(nb))
+    if (assert_int(nb) == ERROR)
         return ERROR;
 
     // Main code
@@ -59,12 +59,16 @@ int my_compute_power_it(int nb, int p)
 int my_compute_power_rec(int nb, int p)
 {
     // Assert inputs
-    if (assert_int(nb))
+    if (assert_int(nb) == ERROR)
         return ERROR;
-    if (assert_int_range(p, 0, INT_MAX))
+    if (assert_int(p) == ERROR)
         return ERROR;
 
     // Main code
+    if (p < 0)
+        return 0;
+    if (p == 0)
+        return 1;
     if (p == 1)
         return nb;
     return nb * my_compute_power_rec(nb, p - 1);
@@ -78,7 +82,7 @@ int my_compute_power_rec(int nb, int p)
 int my_compute_square_root(int nb)
 {
     // Assert inputs
-    if (assert_int(nb))
+    if (assert_int(nb) == ERROR)
         return ERROR;
 
     // Main code
@@ -102,17 +106,19 @@ int my_compute_square_root(int nb)
 int my_is_prime(int nb)
 {
     // Assert inputs
-    if (assert_int(nb))
+    if (assert_int(nb) == ERROR)
         return ERROR;
 
     // Main code
     int count = 0;
+    if (nb < 2)
+        return FALSE;
     for (int i = 1; i <= nb; i++)
     {
         if (nb % i == 0)
             count++;
         if (count > 2)
-            return 0;
+            return FALSE;
     }
     return count == 2;
 }
@@ -125,7 +131,7 @@ int my_is_prime(int nb)
 int my_find_prime_sup(int nb)
 {
     // Assert inputs
-    if (assert_int(nb))
+    if (assert_int(nb) == ERROR)
         return ERROR;
 
     // Main code
@@ -141,10 +147,24 @@ int my_find_prime_sup(int nb)
 /// @return A pointer to the 2D array
 int **create_empty_array_2D_int(int size)
 {
+    // Assert inputs
+    if (assert_int_range(size, 0, INT_MAX) == ERROR)
+        return NULL;
+
+    // Main code
     int **array = malloc(size * sizeof(int *));
+    if (array == NULL)
+        return NULL;
     for (int i = 0; i < size; i++)
     {
         array[i] = malloc(size * sizeof(int));
+        if (array[i] == NULL)
+        {
+            for (int j = 0; j < i; j++)
+                free(array[j]);
+            free(array);
+            return NULL;
+        }
         for (int j = 0; j < size; j++)
             array[i][j] = 0;
     }
@@ -157,10 +177,26 @@ int **create_empty_array_2D_int(int size)
 /// @return A pointer to the copied 2D array
 int **create_copy_array_2D_int(int **base, int size)
 {
+    // Assert inputs
+    if (base == NULL)
+        return NULL;
+    if (assert_int_range(size, 0, INT_MAX) == ERROR)
+        return NULL;
+
+    // Main code
     int **array = malloc(size * sizeof(int *));
+    if (array == NULL)
+        return NULL;
     for (int i = 0; i < size; i++)
     {
         array[i] = malloc(size * sizeof(int));
+        if (array[i] == NULL)
+        {
+            for (int j = 0; j < i; j++)
+                free(array[j]);
+            free(array);
+            return NULL;
+        }
         for (int j = 0; j < size; j++)
             array[i][j] = base[i][j];
     }

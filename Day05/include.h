@@ -1,12 +1,9 @@
+#include "../Day04/include.h"
+
 #ifndef INCLUDE_DAY05
 #define INCLUDE_DAY05
 
-#include <unistd.h>
-#include <stdio.h>
 #include <stdlib.h>
-
-#include "../Day03/include.h"
-#include "../Day04/include.h"
 
 /* --- Task 01 --- */
 

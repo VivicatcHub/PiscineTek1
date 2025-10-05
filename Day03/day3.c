@@ -1,10 +1,25 @@
 #include "include.h"
 
+/// @brief Check if a character is valid (ASCII)
+/// @param c The character to check
+/// @return ERROR if the character is invalid, NOERROR otherwise
+int assert_char(char c)
+{
+    if (c < 0)
+        return ERROR;
+    return NOERROR;
+}
+
 /// @brief Write a character to the standard output
 /// @param c The character to write
 /// @return None
 void my_putchar(char c)
 {
+    // Assert inputs
+    if (assert_char(c) == ERROR)
+        return;
+
+    // Main code
     write(1, &c, 1);
 }
 
@@ -15,9 +30,7 @@ void my_putchar(char c)
 /// @return Always NOERROR
 int my_print_alpha(void)
 {
-    char letter;
-
-    for (letter = 'a'; letter <= 'z'; letter++)
+    for (char letter = 'a'; letter <= 'z'; letter++)
         my_putchar(letter);
     return NOERROR;
 }
@@ -29,9 +42,7 @@ int my_print_alpha(void)
 /// @return Always NOERROR
 int my_print_revalpha(void)
 {
-    char letter;
-
-    for (letter = 'z'; letter >= 'a'; letter--)
+    for (char letter = 'z'; letter >= 'a'; letter--)
         my_putchar(letter);
     return NOERROR;
 }
@@ -43,9 +54,7 @@ int my_print_revalpha(void)
 /// @return Always NOERROR
 int my_print_digits(void)
 {
-    char digit;
-
-    for (digit = '0'; digit <= '9'; digit++)
+    for (char digit = '0'; digit <= '9'; digit++)
         my_putchar(digit);
     return NOERROR;
 }
@@ -59,7 +68,6 @@ int my_print_digits(void)
 /// @return ERROR if the integer is out of range, NOERROR otherwise
 int assert_int_range(long long integer, int min, int max)
 {
-    // Main code
     if (integer < min || integer > max)
         return ERROR;
     return NOERROR;
@@ -70,7 +78,6 @@ int assert_int_range(long long integer, int min, int max)
 /// @return ERROR if the integer is out of range, NOERROR otherwise
 int assert_int(long long integer)
 {
-    // Main code
     if (assert_int_range(integer, INT_MIN, INT_MAX) == ERROR)
         return ERROR;
     return NOERROR;
@@ -82,7 +89,7 @@ int assert_int(long long integer)
 int my_isneg(int n)
 {
     // Assert inputs
-    if (assert_int(n))
+    if (assert_int(n) == ERROR)
         return ERROR;
 
     // Main code
@@ -123,6 +130,11 @@ int my_print_comb(void)
 /// @return The integer value of the character
 int char_to_int(char c)
 {
+    // Assert inputs
+    if (assert_char(c) == ERROR)
+        return ERROR;
+
+    // Main code
     return c - '0';
 }
 

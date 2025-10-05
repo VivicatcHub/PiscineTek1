@@ -89,11 +89,26 @@ void display_side(unsigned int size)
         count -= display_side_line(size, count);
 }
 
+/// @brief  Check if an integer is within the range of a standard 32-bit unsigned integer
+/// @param integer The integer to check
+/// @return ERROR if the integer is out of range, NOERROR otherwise
+int assert_uint(long long integer)
+{
+    if (assert_int_range(integer, 0, UINT_MAX) == ERROR)
+        return ERROR;
+    return NOERROR;
+}
+
 /// @brief Create a star pattern
 /// @param size The size of the star
 /// @return void
 void star(unsigned int size)
 {
+    // Assert inputs
+    if (assert_uint(size) == ERROR)
+        return;
+
+    // Main code
     display_head(size);
     display_bar(size);
     display_side(size);

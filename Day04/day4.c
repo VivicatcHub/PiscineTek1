@@ -9,8 +9,8 @@
 void my_swap(int *a, int *b)
 {
     // Assert inputs
-    assert_int(*a);
-    assert_int(*b);
+    if (assert_int(*a) == ERROR || assert_int(*b) == ERROR)
+        return;
 
     // Main code
     int temp = *a;
@@ -25,8 +25,11 @@ void my_swap(int *a, int *b)
 /// @return NOERROR on success, ERROR if str is NULL
 int my_putstr(char const *str)
 {
+    // Assert inputs
     if (str == NULL)
         return ERROR;
+
+    // Main code
     for (int index = 0; str[index] != '\0'; index++)
         my_putchar(str[index]);
     return NOERROR;
@@ -39,8 +42,11 @@ int my_putstr(char const *str)
 /// @return The length of the string, or ERROR if str is NULL
 int my_strlen(char const *str)
 {
+    // Assert inputs
     if (str == NULL)
         return 0;
+
+    // Main code
     int size = 0;
     for (; str[size] != '\0'; size++)
         ;
@@ -54,8 +60,11 @@ int my_strlen(char const *str)
 /// @return A pointer to the reversed string, or NULL if str is NULL
 char *my_evil_str(char *str)
 {
+    // Assert inputs
     if (str == NULL)
         return NULL;
+
+    // Main code
     int size = my_strlen(str);
     for (int index = 0; index < size / 2; index++)
     {
@@ -73,6 +82,11 @@ char *my_evil_str(char *str)
 /// @return 1 if c is a digit, 0 otherwise
 int is_char_number(char c)
 {
+    // Assert inputs
+    if (assert_char(c) == ERROR)
+        return FALSE;
+
+    // Main code
     return (c >= '0' && c <= '9');
 }
 
@@ -87,8 +101,11 @@ int is_char_to_stop(char c)
 /// @return The converted integer, or 0 if str is NULL
 int my_getnbr(char const *str)
 {
+    // Assert inputs
     if (str == NULL)
         return 0;
+
+    // Main code
     long long result = 0;
     int sign = 1;
     for (int index = 0; str[index] != '\0'; index++)
@@ -118,16 +135,23 @@ int my_getnbr(char const *str)
 /// @return void
 void my_sort_int_array(int *array, int size)
 {
+    // Assert inputs
+    if (array == NULL)
+        return;
+    if (assert_int_range(size, 0, INT_MAX) == ERROR)
+        return;
+
+    // Main code
     while (size > 1)
     {
-        int new_n = 0;
+        int new_size = 0;
         for (int i = 1; i < size; i++)
             if (array[i - 1] > array[i])
             {
                 my_swap(&array[i - 1], &array[i]);
-                new_n = i;
+                new_size = i;
             }
-        size = new_n;
+        size = new_size;
     }
 }
 
@@ -166,5 +190,12 @@ void quick_sort(int *array, int first, int last)
 /// @return void
 void my_quick_sort_int_array(int *array, int size)
 {
+    // Assert inputs
+    if (array == NULL)
+        return;
+    if (assert_int_range(size, 0, INT_MAX) == ERROR)
+        return;
+
+    // Main code
     quick_sort(array, 0, size - 1);
 }

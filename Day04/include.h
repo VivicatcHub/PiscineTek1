@@ -1,10 +1,7 @@
-#ifndef INCLUDE_DAY05
-#define INCLUDE_DAY05
-
-#include <unistd.h>
-#include <stdio.h>
-
 #include "../Day03/include.h"
+
+#ifndef INCLUDE_DAY04
+#define INCLUDE_DAY04
 
 /* --- Task 01 --- */
 
@@ -32,4 +29,7 @@ int my_getnbr(char const *str);
 void my_sort_int_array(int *array, int size);
 void my_quick_sort_int_array(int *array, int size);
 
-#endif /* INCLUDE_DAY05 */
+#define FALSE (0)
+#define TRUE (1)
+
+#endif /* INCLUDE_DAY04 */

@@ -1,5 +1,5 @@
-#ifndef INCLUDE_DAY04
-#define INCLUDE_DAY04
+#ifndef INCLUDE_DAY03
+#define INCLUDE_DAY03
 
 #include <unistd.h>
 #include <stdio.h>
@@ -8,6 +8,7 @@ void my_putchar(char c);
 
 /* --- Task 01 --- */
 
+int assert_char(char c);
 int my_print_alpha(void);
 
 /* --- Task 02 --- */
@@ -46,7 +47,7 @@ int my_print_combn(int n);
 #define INT_MIN (-2147483648)
 #define INT_MAX (2147483647)
 
-#define NOERROR 0
-#define ERROR -1
+#define NOERROR (0)
+#define ERROR (-1)
 
-#endif /* INCLUDE_DAY04 */
+#endif /* INCLUDE_DAY03 */
